@@ -131,7 +131,7 @@ hexo.extend.tag.register('dplayer', function (args) {
         opt.url = urlFn.resolve(hexo.config.root, asset.path);
       }
     }
-    raw += '<script>(function(){var player = new DPlayer(' +
+    raw += '<script>(function(){var player = new CBlayer(' +
       JSON.stringify({
         //element: "document.getElementById('')",
         container: "document.getElementById('')",

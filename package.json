@@ -1,7 +1,7 @@
 {
-  "name": "hexo-tag-dplayer",
-  "version": "0.3.3",
-  "description": "Embed dplayer in Hexo posts/pages",
+  "name": "hexo-tag-cbplayer",
+  "version": "0.1.0",
+  "description": "Embed CBPlayer in Hexo posts/pages",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,18 +14,17 @@
     "player",
     "dplayer"
   ],
-  "author": "dixyes",
+  "author": "galgamer",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MoePlayer/hexo-tag-dplayer.git"
+    "url": "git+https://github.com/OPPO9008/hexo-tag-cbplayer.git"
   },
   "bugs": {
-    "url": "https://github.com/MoePlayer/hexo-tag-dplayer/issues"
+    "url": "https://github.com/OPPO9008/hexo-tag-cbplayer/issues"
   },
-  "homepage": "https://github.com/MoePlayer/hexo-tag-dplayer#readme",
+  "homepage": "https://github.com/OPPO9008/hexo-tag-dplayer#readme",
   "dependencies": {
-    "dplayer": "^1.6.0",
     "hexo-log": "^0.2.0",
     "hexo-fs": "^0.2.2",
     "hexo-util": "^0.6.2"

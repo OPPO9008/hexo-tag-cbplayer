@@ -1,6 +1,6 @@
 /**
 * hexo-tag-dplayer
-* Embed DPlayer(https://github.com/DIYgod/DPlayer) in Hexo posts/pages.
+* Embed CBPlayer2(https://github.com/cdnbye/CBPlayer) in Hexo posts/pages.
 * Syntax:
 *  {% dplayer key=value ... %}
 */
@@ -10,13 +10,13 @@ const fs = require('hexo-fs'),
   util = require('hexo-util'),
   log = require('hexo-log')({name:"hexo-tag-dplayer",debug:false}), // logger
   urlFn = require('url'),
-  path = require('path'),
-  srcDir = path.dirname(require.resolve('dplayer')),
-  scriptDir = '/assets/js/', // default script directories
-  styleDir = '/assets/css/',
-  files = [
-    ['DPlayer.min.css', styleDir],
-    ['DPlayer.min.js', scriptDir],
+  path = require('path');
+//  srcDir = path.dirname(require.resolve('dplayer')),
+//  scriptDir = '/assets/js/', // default script directories
+//  styleDir = '/assets/css/',
+//  files = [
+//    ['DPlayer.min.css', styleDir],
+//    ['DPlayer.min.js', scriptDir],
     // some map for debug use
     //['DPlayer.min.css.map', styleDir],
     //['DPlayer.min.js.map', scriptDir],
@@ -31,38 +31,45 @@ String.prototype.replaceAll = function(search, replacement) {
 };
   
 var counter = 0,
-  conf = hexo.config['hexo-tag-dplayer'] || {},
+  conf = hexo.config['hexo-tag-cbplayer'] || {},
   tbIns=[];
 
   
 if (!conf.cdn){
-  files.forEach(item => {
-    var destPath = item[1], filePath = path.join(srcDir, item[0]);
-    if (item[1] === scriptDir){
-      destPath = conf.js_path || item[1];
-    } else if (item[1] === styleDir){
-      destPath = conf.css_path || item[1];
-    }
-    fs.access(filePath, (fs.constants || fs).R_OK , (err) => {
-      if(err){
-        log.info(item[0]+' is not found in this version of dplayer, skip it.');
-      } else {
-        hexo.extend.generator.register(path.posix.join(destPath, item[0]), (_) => {
-          return {
-            path: path.relative(hexo.config.root, path.posix.join(destPath, item[0])),
-            data: function() {
-              return fs.createReadStream(filePath);
-            }
-          }
-        });
-        tbIns.push(path.posix.join(destPath, item[0]));
-      }
-    })
-  })
+conf.cdn = [
+  'https://cdn.jsdelivr.net/npm/cbplayer2@0.11.1/dist/CBPlayer.min.js',
+  'https://code.bdstatic.com/npm/hls.js@0.14.13/dist/hls.min.js',
+  'https://cdn.jsdelivr.net/npm/cdnbye@latest/dist/hlsjs-p2p-engine.min.js'
+];
+log.info('找不到hexo-tag-dplayer 的js配置，使用默认cdn');
+// 移除这个是因为dplayer/DPlayer 的依赖 太多， 就为了两个js文件，实属买椟还珠
+// files.forEach(item => {
+//    var destPath = item[1], filePath = path.join(srcDir, item[0]);
+//    if (item[1] === scriptDir){
+//      destPath = conf.js_path || item[1];
+//    } else if (item[1] === styleDir){
+//      destPath = conf.css_path || item[1];
+//    }
+//    fs.access(filePath, (fs.constants || fs).R_OK , (err) => {
+//      if(err){
+//        log.info(item[0]+' is not found in this version of dplayer, skip it.');
+//      } else {
+//        hexo.extend.generator.register(path.posix.join(destPath, item[0]), (_) => {
+//          return {
+//            path: path.relative(hexo.config.root, path.posix.join(destPath, item[0])),
+//            data: function() {
+//              return fs.createReadStream(filePath);
+//            }
+//          }
+//        });
+//        tbIns.push(path.posix.join(destPath, item[0]));
+//      }
+//    })
+//  })
 }
 
 hexo.extend.filter.register('after_render:html', (str, data) => {
-  if(str.includes('</html>') && str.includes('class="dplayer hexo-tag-dplayer-mark"')){ //make sure dplayer used in final html
+  if(str.includes('</html>') && str.includes('class="dplayer hexo-tag-cbplayer-mark"')){ //make sure dplayer used in final html
     log.debug("got page that dplayer used");
     var target = conf.cdn || tbIns,
       s = str;
@@ -88,8 +95,8 @@ hexo.extend.filter.register('after_render:html', (str, data) => {
 
 
 
-// {% dplayer key=value ... %}
-hexo.extend.tag.register('dplayer', function (args) {
+// {% cbplayer key=value ... %}
+hexo.extend.tag.register('cbplayer', function (args) {
   
   //hexo.locals.get('posts').forEach(console.log)
 
@@ -120,7 +127,7 @@ hexo.extend.tag.register('dplayer', function (args) {
   const width = opt.width || def.width,
     height = opt.height || def.height;
   var url = opt.url || def.url;
-  var raw =  '<div id="'+ id + '" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;'+(width ?' width:'+width+';':'')+(height?' height:'+height+';':'')+'"></div>';
+  var raw =  '<div id="'+ id + '" class="dplayer hexo-tag-cbplayer-mark" style="margin-bottom: 20px;'+(width ?' width:'+width+';':'')+(height?' height:'+height+';':'')+'"></div>';
   if(url != undefined){
     if (hexo.config['post_asset_folder'] == true ){
       //for #10, if post_asset_folder is enable, regard url as relative url
@@ -131,7 +138,7 @@ hexo.extend.tag.register('dplayer', function (args) {
         opt.url = urlFn.resolve(hexo.config.root, asset.path);
       }
     }
-    raw += '<script>(function(){var player = new DPlayer(' +
+    raw += '<script>(function(){var player = new CBPlayer(' +
       JSON.stringify({
         //element: "document.getElementById('')",
         container: "document.getElementById('')",

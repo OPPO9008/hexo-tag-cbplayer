@@ -1,15 +1,13 @@
-# hexo-tag-dplayer
-本项目是将diygod的dplayer运行在hexo的插件
+# hexo-tag-cbplayer
+本项目是将[diygod](https://github.com/cdnbye)的CBPlayer运行在hexo的插件
 
 感谢关注这个插件的人们，感谢aplayer的hexo插件作者@grzhan，感谢A or D播放器作者@Diygod
 
-感谢插件豆子@dixyes的移植
+借鉴项目：https://github.com/MoePlayer/hexo-tag-dplayer
 
-借鉴项目：https://github.com/grzhan/hexo-tag-aplayer
+这个项目的维护者完全不会js ，是靠查谷歌解决的
 
-这个项目的两个维护者一个只会卖萌，一个又沉迷屁股(这是豆子)
-
-所以有什么bug很长时间没解决的，请谅解
+所以有什么bug很长时间没解决的，自求多福吧
 
 如果您能修复的话，也希望请您修复一下提交个pr什么的，祝君安康
 
@@ -18,21 +16,18 @@
 
 
 
-Embed DPlayer([https://github.com/DIYgod/DPlayer](https://github.com/DIYgod/DPlayer)) in Hexo posts/pages.
+Embed CBPlayer([https://github.com/cdnbye/CBPlayer](https://github.com/DIYgod/DPlayer)) in Hexo posts/pages.
 
-[Hexo Demo](https://morz.org/archives/2016-09-09/%E8%A7%86%E9%A2%91%E5%88%86%E4%BA%AB-%E3%80%90%E6%9D%B1%E6%96%B9Vocal%E3%80%91%E8%8A%B1%E6%98%A0%E3%80%8C%E3%82%BF%E3%83%9E%E3%82%B7%E3%82%A4%E3%83%8E%E3%83%8F%E3%83%8A%E3%80%8D-%E5%87%8B%E5%8F%B6%E6%A3%95-%E3%80%8CSubbed%E3%80%8D.html)
-
-![plugin screenshot](https://video-cache.morz.org/data/img/dplayer-1.jpg)
-
+[Hexo Demo](https://galgamer.xyz/article/32619#%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9C%96)
 
 
 ## npm install
 
-	npm install hexo-tag-dplayer --save
+	npm install hexo-tag-cbplayer --save
 
 ## Usage
 
-	{% dplayer key=value ... %}
+	{% cbplayer key=value ... %}
 
 key can be 
 
@@ -45,7 +40,7 @@ key can be
     other:
         'code' : value of this key will be append to script tag
 
-arguments to DPlayer options mapping:
+arguments to CBPlayer options mapping:
 
     {
         container: "you needn't set this",
@@ -89,8 +84,8 @@ see dplayer documents for more infomation.
 
 for example:
 
-    {% dplayer "url=https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.mp4" "addition=https://dplayer.daoapp.io/bilibili?aid=4157142" "api=https://api.prprpr.me/dplayer/" "pic=https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.jpg" "id=9E2E3368B56CDBB4" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %}
-    {% dplayer 'url=some.mp4' "id=someid" "api=https://api.prprpr.me/dplayer/" "addition=/some.json" 'code=player.on("loadstart",function(){console.log("loadstart")})' "autoplay" %} 
+    {% cbplayer "url=https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.mp4" "addition=https://dplayer.daoapp.io/bilibili?aid=4157142" "api=https://api.prprpr.me/dplayer/" "pic=https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.jpg" "id=9E2E3368B56CDBB4" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %}
+    {% cbplayer 'url=some.mp4' "id=someid" "api=https://api.prprpr.me/dplayer/" "addition=/some.json" 'code=player.on("loadstart",function(){console.log("loadstart")})' "autoplay" %} 
 
 
 ## PJAX compatible

@@ -1,6 +1,8 @@
 # hexo-tag-cbplayer
 本项目是将[diygod](https://github.com/cdnbye)的CBPlayer运行在hexo的插件
 
+可以实现p2p加速视频下载与节约流量，让访客成为你的cdn
+
 感谢关注这个插件的人们，感谢aplayer的hexo插件作者@grzhan，感谢A or D播放器作者@Diygod
 
 借鉴项目：https://github.com/MoePlayer/hexo-tag-dplayer

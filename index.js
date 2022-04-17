@@ -8,7 +8,7 @@
 
 const fs = require('hexo-fs'),
   util = require('hexo-util'),
-  log = require('hexo-log')({name:"hexo-tag-dplayer",debug:false}), // logger
+  log = require('hexo-log')({name:"hexo-tag-cbplayer",debug:false}), // logger
   urlFn = require('url'),
   path = require('path');
 //  srcDir = path.dirname(require.resolve('dplayer')),

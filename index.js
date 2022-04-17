@@ -22,7 +22,7 @@ const fs = require('hexo-fs'),
     //['DPlayer.min.js.map', scriptDir],
     // if there be any other dplayer file
     //['someDplayerFile.xxx', targetDir],
-  ];
+//  ];
 
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
